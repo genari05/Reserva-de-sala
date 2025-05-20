@@ -1,12 +1,8 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+# config.py
 
-app = Flask(__name__)
+HOST = '0.0.0.0'
+PORT = 5001
+DEBUG = True
 
-app.config['HOST'] = '0.0.0.0'
-app.config['PORT'] = 5080
-app.config['DEBUG'] = True
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///app.db"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-db = SQLAlchemy(app)
+SQLALCHEMY_DATABASE_URI = 'sqlite:///app.db'
+SQLALCHEMY_TRACK_MODIFICATIONS = False
