@@ -1,7 +1,7 @@
 # services/turma_client.py
 import requests
 
-TURMA_SERVICE_URL = "http://turmas_service:5000/api/turmas"
+TURMA_SERVICE_URL = "http://turmas_service:5000/turmas"
 
 def turma_existe(turma_id):
     try:
