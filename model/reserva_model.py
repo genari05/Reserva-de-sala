@@ -1,9 +1,7 @@
-
 from flask import request
 from database import db
-from sqlalchemy import Date, Time
 from datetime import datetime
-
+import requests
 
 class Reserva(db.Model):
     __tablename__ = 'reservas'
@@ -11,11 +9,11 @@ class Reserva(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     turma_id = db.Column(db.Integer, nullable=False)
     sala = db.Column(db.String(50), nullable=False)
-    data = db.Column(db.String(20), nullable=False)       # Data como string (ex: "2025-06-01")
-    hora_inicio = db.Column(db.String(10), nullable=False) # Horário como string (ex: "08:00")
-    hora_fim = db.Column(db.String(10), nullable=False)    # Horário como string (ex: "10:00")
+    data = db.Column(db.String(20), nullable=False)         # Ex: "2025-06-01"
+    hora_inicio = db.Column(db.String(10), nullable=False)  # Ex: "08:00"
+    hora_fim = db.Column(db.String(10), nullable=False)      # Ex: "10:00"
 
-
+# Função para listar todas as reservas
 def listar_reservas():
     reservas = Reserva.query.all()
     return [
@@ -29,16 +27,16 @@ def listar_reservas():
         } for reserva in reservas
     ]
 
-
+# Validação real via requisição HTTP ao microserviço de turmas
 def validar_turma(turma_id):
-    return True
-    '''try:
-        resp = requests.get(f"http://localhost:5000/api/turmas/{turma_id}")
+    try:
+        resp = requests.get(f"http://turmas_service:5000/api/turmas/{turma_id}")
         return resp.status_code == 200
-    except requests.exceptions.RequestException:
-        return False'''
+    except requests.exceptions.RequestException as e:
+        print(f"Erro ao validar turma: {e}")
+        return False
 
-
+# Criação de reserva
 def criar_reserva():
     dados = request.json
 
@@ -67,5 +65,3 @@ def criar_reserva():
     except Exception as e:
         db.session.rollback()
         return {"erro": "Erro ao salvar no banco de dados", "detalhes": str(e)}, 500
-
-

@@ -5,17 +5,16 @@ from database import db
 
 import requests
 
-reserva_blueprint = Blueprint("routes", __name__, url_prefix="/reserva")
+reserva_blueprint = Blueprint("reserva_routes", __name__, url_prefix="/reserva")
+
 
 # Função interna para verificar se a turma existe
-'''def validar_turma(turma_id):
+def validar_turma(turma_id):
     try:
-        resp = requests.get(f"http://localhost:5000/api/turmas/{turma_id}")
+        resp = requests.get(f"http://localhost:5000/turmas/{turma_id}")
         return resp.status_code == 200
     except requests.RequestException:
-        return False'''
-def validar_turma(turma_id):
-    return turma_id in [1, 2, 3]
+        return False
 
 
 # ROTA 1: Criar uma nova reserva
