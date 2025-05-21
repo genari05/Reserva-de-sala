@@ -1,9 +1,16 @@
 FROM python:3.8-slim
 
 WORKDIR /app
-COPY . .
+
+# Copia o requirements.txt (que está na raiz, pois o contexto é ..)
+COPY requirements.txt .
+COPY instance/app.db ./instance/app.db
+
 
 RUN pip install --no-cache-dir -r requirements.txt
+
+# Copia todo o restante dos arquivos do contexto (raiz do projeto)
+COPY . .
 
 EXPOSE 5001
 

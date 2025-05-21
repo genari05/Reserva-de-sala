@@ -1,17 +1,14 @@
-version: '3.8'
+version: "3.9"
 
 services:
-  api:
+  reserva:
     build:
-        context: .
-        dockerfile: docker/dockerfile
+      context: ..
+      dockerfile: docker/Dockerfile
     ports:
-       - "5001:5001"
-    volume:
-       - .:/app
-    entrypoint: 
-      - FLASK_ENV=development
-      - FLASK_APP=app.py
+      - "5001:5001"
+    environment:
+      FLASK_ENV: development
+      FLASK_APP: app.py
     working_dir: /app
     command: flask run --host=0.0.0.0 --port=5001
-
