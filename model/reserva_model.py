@@ -4,12 +4,6 @@ from database import db
 from datetime import datetime
 import requests
 
-from flask import request, from database import db
-import requests
-from sqlalchemy import Date, Time
-from datetime import datetime
-
-
 class Reserva(db.Model):
     __tablename__ = 'reservas'
 
@@ -48,7 +42,7 @@ def validar_turma(turma_id):
 def criar_reserva():
     dados = request.json
 
-=======
+
     data = db.Column(db.String(20), nullable=False)  # possivel ateração para date 
     hora_inicio = db.Column(db.String(10), nullable=False)  # possivel ateração para time
     hora_fim = db.Column(db.String(10), nullable=False)     # possivel ateração para time
