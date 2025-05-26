@@ -11,12 +11,15 @@ Esta API é responsável pela criação e listagem de reservas de salas para tur
 ### Pré-requisitos
 
 - Docker e Docker Compose instalados.
+-  Ter a API de turma ativa.
 
 ### Passos
 
 1. Clone o repositório:
    ```bash
    git clone https://github.com/genari05/Reserva-de-sala.git
+
+   https://github.com/genari05/Flask.git
 
 ---
 🌐 Ecossistema de Microsserviços
